@@ -1,0 +1,514 @@
+/*
+-------------------------------------------------- 
+General settings                            
+-------------------------------------------------- 
+*/
+html, body{
+	display: block;
+	height: 100%;
+	min-width: 570px;
+	z-index: -1;
+}
+.btn{
+	cursor: pointer;
+}
+.money-field{
+	left: 0;
+	right: auto;
+	text-align: right;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.nobullets{
+	list-style-type: none;
+}
+
+.noemphasis{
+	color: rgb(166, 166, 166);
+}
+/* To keep v-scroll when dialog opens */
+body { 
+    padding-right:0px !important;
+    margin-right:0px !important;
+}
+/* To keep v-scroll when dialog opens */
+body.modal-open {
+    overflow: auto;
+}
+
+.fa-inverse-color{
+	color: rgb(255,255,255);
+	background-color: rgb(0,0,0);
+}
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+.wait-cursor {
+	cursor: wait;
+}
+.container-fluid {
+	padding: 0;
+}
+.btn-primary:hover{
+	background-color: rgb(20,192,228);
+	border-color: #01549b;
+}
+.help{
+	font-size: 0.8em;
+	display: block;
+	color: rgb(80,0,0);
+}
+.fa-link-button:link, .fa-link-button:visited, .fa-link-button:active{
+	padding: 20px;
+	font-size: 30px;
+	width: 65px;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px 2px;
+	border-radius: 50%;
+}
+.fa-link-button:hover {
+    opacity: 0.7;
+	text-decoration: none;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+.fa-pinterest {
+  background: #cb2027;
+  color: white;
+}
+.fa-skype {
+  background: #00aff0;
+  color: white;
+}
+.fa-android {
+  background: #a4c639;
+  color: white;
+}
+.fa-rss {
+  background: #ff6600;
+  color: white;
+}
+/*
+-------------------------------------------------- 
+Animate.css                            
+-------------------------------------------------- 
+*/
+.delay{
+	-animation-delay: .5s;
+	-webkit-animation-delay: .5s;
+	-moz-animation-delay: .5s;
+}
+.delay1{
+	-animation-delay: 1s;
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay: 1s;
+}
+/*
+--------------------------------------------------
+Navigation bar                                    
+--------------------------------------------------
+*/
+nav{
+	z-index: 1;
+}
+.navbar-essencial{
+	color: rgb(255, 255, 255);
+	background-color:rgba(19,48,90,0.90);
+	-webkit-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	-moz-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	border: 1px 0px 1px 0px solid rgb(20,192,228);
+    box-sizing: border-box;	
+}
+.navbar-login{
+	width: 450px;
+	min-width: 450px;
+    padding: 10px;
+	margin: auto;
+}
+nav .btn-primary{
+	cursor: pointer;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */	
+}
+nav .dropdown:hover{
+	color: rgb(113,215,227);
+}
+#login-form .form-group{
+	padding: 3px 0 0 0;
+	margin: 0;
+}
+#login-form input[type=text], [type=password]{
+	text-align: left;
+	font-size: 0.8em;
+	font-style: italic;
+}
+/*
+-------------------------------------------------- 
+Page header                                      
+-------------------------------------------------- 
+*/
+#page-header{
+	background: url("../imgs/bg-hero.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center; 
+	margin: 0 auto; 
+	padding-top: 80px;	
+	padding-bottom: 80px;
+	text-align: center;
+	position: relative;	
+	z-index: 1;
+}
+.overlay {
+  background: url("../imgs/pixelated.png") repeat scroll left top;
+  height: 60%;
+  left: 25%;
+  position: absolute;
+  top: 25%;
+  width: 50%;
+  z-index: 2;
+}
+#page-header h1{
+	font-size: 3em;
+	font-weight: 900;
+	color: rgb(113,215,227);
+	-webkit-text-stroke: 2px rgb(113,215,227);
+	text-transform: uppercase;
+	letter-spacing:1px;
+	padding-top: 40px;
+}
+#page-header h2 {
+	font-size: 2.5em;
+	font-style: bold;
+	color: rgb(255,255,255);
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+#page-header .lead{
+	font-size: 2em;
+	font-weight: bold;
+	color: #a6ffff;
+	margin-left: 10%;
+	margin-right: 10%;
+	z-index: 3;
+
+	stroke: 1px;
+   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
+/*
+-------------------------------------------------- 
+Page content (Serviços oferecidos)                               
+-------------------------------------------------- 
+*/
+#section1{
+	background-color:rgb(20,192,228);
+	height: 80%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 10%; 
+	padding-right: 10%;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;	
+	-webkit-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	-moz-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	border: 1px 0px 1px 0px solid rgb(255,255,255);
+    box-sizing: border-box;
+	z-index: 2;
+}
+#section1 h1{
+	padding-top: 25px;
+	padding-bottom: 25px;
+	font-weight: bold;
+	font-size: 2em;
+	text-align: left;
+}
+#section1 h2{
+	font-size: 1.2em;
+	font-weight: normal;
+	line-height: 28px;
+	color: rgb(20,20,20);
+	text-align: left;
+	
+}
+#section1 .feature{
+	color: rgb(255,255,255);
+	background-color: rgb(19,48,90);
+	margin: 10px 0px 10px 0px;
+	padding: 5px 0px 5px 10px;
+	font-size: 0.9em;
+	text-align: left;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; /* future proofing */
+	-khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+#section1 .feature > img{
+	margin-right: 10px;
+}
+/*
+--------------------------------------------------
+Page content (Avaliação de perfil imigratório)                           
+--------------------------------------------------
+*/
+#section2{
+	background: linear-gradient(rgba(0, 255, 0, 0.60),  rgba(255, 0, 0, 0.40)),url("../imgs/bg-parallax1.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center; 
+	height: auto; /* 100% of viewport height */
+	margin: 0 auto; 
+	position: relative; 
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+#section2 .card{
+	-webkit-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	-moz-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	font-size: 1.2em;
+}
+#section2 .card-header{
+	color: rgb(0,0,0);
+	background-color: rgb(20,192,228);
+}
+#section2 .cart-text{
+	font-size: 1.8em;
+}
+#section2 .card-title{
+	font-size: 1.2em;
+}
+#section2 .card-text{
+	padding-top: 10px;
+}
+#section2 .lead{
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	color: rgb(255,255,255);
+	padding-top: 100px;
+	padding-bottom: 50px;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+/*
+--------------------------------------------------
+Spacer (Parallax)
+--------------------------------------------------
+*/
+#section3{
+	background-color: #BBB;
+	height: 500px;
+	box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+	z-index: 2;
+}
+/*
+--------------------------------------------------
+Page content (Formulário de cadastro)
+-------------------------------------------------- 
+*/
+
+.modal-header{
+	color: rgb(0,0,0);
+	background-color: rgb(20,192,228);
+}
+.fieldset-footer{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #eceeef;
+ }
+ .fieldset-footer > :not(:first-child) {
+  margin-left: .25rem;
+}
+
+.fieldset-footer > :not(:last-child) {
+  margin-right: .25rem;
+}
+
+/*
+--------------------------------------------------
+Page footer
+--------------------------------------------------
+*/
+#page-footer{
+	background-color:rgb(19,48,90);
+	height: 80%;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;	
+	-webkit-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	-moz-box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	box-shadow: 0px 2px 28px 15px rgba(0,0,0,0.65);
+	border: 1px 0px 1px 0px solid rgb(20,192,228);
+    box-sizing: border-box;
+	z-index: 1;
+	padding-bottom: 50px;
+}
+#page-footer h1{
+	padding-top: 50px;
+	padding-bottom: 25px;
+	font-weight: bold;
+	font-size: 1.5em;
+	color: rgb(200,200,200);
+}
+#page-footer h2{
+	padding-bottom: 10px;
+	font-size: 1em;
+	font-weight: normal;
+	color: rgb(150,150,150);
+}
+#page-footer p{
+	font-size: 1.5em;
+	font-weight: normal;
+	color: rgb(210,210,210);
+}
+#page-footer .social-media{
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+#page-footer .mail-box {
+    position: relative;
+	display: block;
+    margin-top: 20px;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 30px;
+    width: 80%;
+    min-height: 200px;
+    z-index: 2;
+    border: 1px solid #383838;
+    /* My stipped background */
+    background: #D1D1D1;
+    /* Old browsers */
+    background: -moz-repeating-linear-gradient(-45deg, #33691e, #33691e 30px, #F2F2F2 30px, #F2F2F2 40px, #bf360c 40px, #bf360c 70px, #F2F2F2 70px, #F2F2F2 80px);
+    /* FF3.6+ */
+    background: -webkit-repeating-linear-gradient(-45deg, #33691e, #33691e 30px, #F2F2F2 30px, #F2F2F2 40px, #bf360c 40px, #bf360c 70px, #F2F2F2 70px, #F2F2F2 80px);
+    /* FF3.6+ */
+    background: -o-repeating-linear-gradient(-45deg, #33691e, #33691e 30px, #F2F2F2 30px, #F2F2F2 40px, #bf360c 40px, #bf360c 70px, #F2F2F2 70px, #F2F2F2 80px);
+    /* FF3.6+ */
+    background: repeating-linear-gradient(-45deg, #33691e, #33691e 30px, #F2F2F2 30px, #F2F2F2 40px, #bf360c 40px, #bf360c 70px, #F2F2F2 70px, #F2F2F2 80px);
+    /* FF3.6+ */
+    /*border-radius*/
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    /*box-shadow*/
+    -webkit-box-shadow:0px 1px 6px #3F3F3F;
+    -moz-box-shadow:0px 1px 6px #3F3F3F;
+    box-shadow:0px 1px 6px #3F3F3F;
+}
+/** my "fake" background that will hover the stripes **/
+#page-footer .mail-box:after {
+    background: #F9F9F9;
+    margin: 10px;
+    position: absolute;
+    content :" ";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    border:1px #E5E5E5 solid;
+    /*border-radius*/
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+}
+#page-footer .mail-fields{
+	margin: 0 auto;
+	width: 100%;
+	position: relative;
+	text-align: left;
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#page-footer label{
+	margin: 0;
+	padding: 5px 0 5px 0;
+}
+#page-footer input[type=text], textarea{
+	width: 100%;
+	text-align: left;
+	font-size: 0.8em;
+	font-style: italic;
+}
+#page-footer textarea{
+    min-height:100px;
+	height: 100px;
+    resize: vertical;
+	overflow: vscroll;
+}
+#page-end{
+	color: rgb(180,180,180);
+	background-position: center;
+	background-color:rgb(9,22,43);
+	height: 100px;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;	
+	z-index: 1;
+	padding: 25px 0px 25px 0px;
+}
+.small{
+	font-size: 0.5em;
+}
