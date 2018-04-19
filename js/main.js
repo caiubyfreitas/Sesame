@@ -308,7 +308,7 @@ $(document).ready(function() {
 	});
 	
 	$("#btn-close-dialog").click(function(e){
-		$("#sign-up-modal").modal("hide");
+		$("#sign-up-modal").modal("hide");		
 	});
 
 	/*
@@ -373,6 +373,13 @@ $(document).ready(function() {
 			handle.fadeIn('slow');
 		});		
 	});	
+	
+	$("#btn-back-page4").click(function(e){
+		handle.fadeOut(400, function(){
+			handle = $(this).prev();		
+			handle.fadeIn('slow');
+		});		
+	});
 	
 	//Navigation: User wants to proceed to the second page
 	$("#btn-goto-page2").click(function(e){
@@ -603,6 +610,8 @@ $(document).ready(function() {
 			handle.fadeOut(400, function(){
 
 				//Sets whose fields will be visible regarding to user's goal
+				$(".P4AF6").css({"display":"none"});				
+				$(".P4AF5").css({"display":"none"});				
 				$(".P4AF4").css({"display":"none"});				
 				$(".P4AF3").css({"display":"none"});				
 				$(".P4AF2").css({"display":"none"});				
@@ -619,6 +628,12 @@ $(document).ready(function() {
 						break;
 					case "4": //To retire
 						$(".P4AF4").css({"display":"block"});
+						break;
+					case "5": //Rick Rich
+						$(".P4AF5").css({"display":"block"});
+						break;
+					case "6": //VIP
+						$(".P4AF6").css({"display":"block"});
 						break;
 				}
 				handle = $(this).next();
@@ -905,7 +920,13 @@ $(document).ready(function() {
 				encode	: false
 			})
 			.done(function(data){
-				console.log(data);
+				if (data["RECORDS"] == 0){
+					$("#submission-title").html("Aviso");
+					$("#submission-msg").html("<img src=\"imgs/icon-congrats.png\"/ class=\"pull-left\" style=\"margin-right: 10px;\" width=\"64\" height=\"64\"/><p class=\"clearfix\">Seus dados já constam em nosso cadastro.<BR>Se quiser alterá-los ou incluir mais alguma informação importante podemos resolver isso juntos.</p><p class=\"pull-left\">Por favor, envie-nos um email com sua solicitação pelo \"Fale Conosco\" que nossa equipe entrará em contato.</p>");
+				}
+				else{
+					$("#submission-msg").html("<img src=\"imgs/icon-congrats.png\"/ class=\"pull-left\" style=\"margin-right: 10px;\" width=\"64\" height=\"64\"/><p class=\"clearfix\">Parabéns pela iniciativa!<BR>Você pode ser elegível conforme as leis de imigração portuguesas.</p><p class=\"pull-left\">Nossa equipe entrará em contato em breve para obter informações mais específicas que serão necessárias para os próximos passos.</p><p>Queremos comemorar grandes conquistas juntos!</p>");
+				}
 			})
 			.fail(function(data){	
 				console.log(data);
@@ -915,12 +936,15 @@ $(document).ready(function() {
 			
 			
 		}
-	
+		cleanUpFields("sign-up-form");	
 		$("#sign-up-modal").modal("toggle");
 		$("#submission-dialog").modal("show");
 		$("*").removeClass("wait-cursor");	
-		
 	});
+	
+	function propectExists(msg){
+		$("#submission-msg").html("<p class=\"clearfix\">" + msg + "</p>");
+	}
 	
 	/*
 	---------------------------------------------------
@@ -935,7 +959,7 @@ $(document).ready(function() {
 			type: "POST",
 			url: url,
 			data: $("#contact-form").serialize(),
-			dataType: 'json',
+			dataType: "json",
 			encode: true,
 			cache: false
 		});
@@ -952,6 +976,33 @@ $(document).ready(function() {
 		});
 	})
 
+	/*
+	 * Clean up and reset all form fields
+	 * Parameter: form id 
+	 */
+	function cleanUpFields(frm){
+		
+		// Iterate through text fields
+		$("#" + frm + " input[type=text]").each(function(){
+			$("#fldHasBondsGroup").removeClass("has-danger");
+		});
+		$("#" + frm + " input[type=email]").each(function(){
+			$("#fldHasBondsGroup").removeClass("has-danger");
+		});
+		
+		//Iterate through checkboxes
+		$("#" + frm + " input[type=checkbox]").each(function(){
+			$("#fldHasBondsGroup").removeClass("has-danger");
+		});
+		
+		//Iterate through radiobuttons
+		$("#" + frm + " input[type=radio]:checked").each(function(){
+			$("#fldHasBondsGroup").removeClass("has-danger");
+		});					
+
+	}
+	
+	
 	/*
 	---------------------------------------------------
 	Sign-up page - CPF validation

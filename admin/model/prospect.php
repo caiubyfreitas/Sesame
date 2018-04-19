@@ -1,6 +1,9 @@
 <?php
 
-	require_once("glb/db.php");
+    require_once("glb/db.php");
+    require_once("glb/helpers.php");
+    
+    use function Globals\helpers\cleanup_string;
 
 	class Prospect{
 	
@@ -44,7 +47,7 @@
 		public function getAllRecords($startAt){
 		    $records = 0;
 		    $rows = array();
-		    $stmt = "SELECT ID, NAME, EMAIL FROM ES_CLIENT WHERE STATUS = 1 ORDER BY 1 DESC LIMIT 10 OFFSET " . ($startAt);
+		    $stmt = "SELECT C.ID, NAME, EMAIL, LAST_UPDATE, P.GOAL FROM ES_CLIENT C INNER JOIN ES_PROFILE P ON C.ID = P.CLIENT WHERE STATUS = 1 ORDER BY 1 DESC LIMIT 10 OFFSET " . ($startAt);
 		    try{
 		        $rows = $this->dbc->getRows($stmt, array());
 		    }
@@ -70,6 +73,25 @@
 			finally{
 			}
 			return $row;
+		}
+		
+		public function exists($params){
+		    $row = NULL;
+		    $result = false;
+		    $stmt = "SELECT ID FROM ES_CLIENT WHERE EMAIL = :email OR NAME = :name";
+		    try{
+		        $row = $this->dbc->getRows($stmt, array ( 
+		            "email"   => cleanup_string(strtolower($params["EMAIL"])),
+		            "name"    => cleanup_string(strtoupper($params["NAME"]))
+		        ));
+		    }
+		    catch(Exception $e){
+		        throw $e;
+		    }
+		    finally{
+		        $result = ($row != NULL) ? true : false;
+		    }
+		    return $result;
 		}
 		
 		public function changeStatus($params){
@@ -101,68 +123,147 @@
 		        // Create header row
 		        $stmt = "INSERT INTO ES_CLIENT (ID, NAME, EMAIL, STATUS, PASSWORD, LAST_UPDATE, TEL1, TEL2) VALUES(NULL, :name, :email, 1, :password, CURRENT_TIMESTAMP, :tel1, :tel2)";
 		        $rowsAffected = $this->dbc->execute($stmt, array(
-		            "name"     => $params["NAME"],
-		            "email"    => $params["EMAIL"],
+		            "name"     => cleanup_string(strtoupper($params["NAME"])),
+		            "email"    => cleanup_string(strtolower($params["EMAIL"])),
 		            "password" => crypt(explode(' ',trim($params["NAME"]))[0], "essencial"),
 		            "tel1"     => $params["TEL1"],
 		            "tel2"     => $params["TEL2"]
 		        ));   
 		        
 		        // Create details row
-		        $stmt  = "INSERT INTO ES_PROFILE (CLIENT, ISPORTUGUESE, BONDS, ";
-	            for ($i=1; $i<6; $i++){
-	                $stmt .= sprintf("P%uNAME, P%uDOB, P%uDEC, ", $i, $i, $i);
-	            }
-	            $stmt .= "GOAL, SCHOLARSHIP, GRADUATION, PROFESSION, LINKEDINURL, GRADLOCATION, ENEM, GRADCOURSE, COMMENT1, INVSEGMENT, PREVISIT, INVTLOCATION, INVBUDGET, COMMENT3, RETDSTATUS, RETWAGE, RETDLOCATION, RETDALONE, RETMINORSPON, COMMENT2, COMMENT4, COMMENT5) VALUES (";
-                $stmt .= ":client, :isportuguese, :bonds, ";
-                for ($i=1; $i<6; $i++){
-                    $stmt .= sprintf(":p%uname, :p%udob, :p%udec, ", $i, $i, $i);
-                }
-                $stmt .= ":goal, :scholarship, :graduation, :profession, :linkedinurl, :gradlocation, :enem, :gradcourse, :comment1, :invsegment, :previsit, :invtlocation, :invbudget, :comment3, :retdstatus, :retwage, :retdlocation, :retdalone, :retminorspon, :comment2, :comment4, :comment5)";
-		        $client = $this->getLastId();
-		        $goal = (empty($params["fldGoal"]) ? 0 : $params["fldGoal"]);
-		        $rowsAffected = $this->dbc->execute($stmt, array(
-                    "client"        => $client,
-                    "isportuguese"  => $params["ISPORTUGUESE"],
-                    "bonds"         => $params["BONDS"],
-		            "p1name"        => (empty($params["fldParentName1"]) ? NULL : $params["fldParentName1"]),
-		            "p1dob"         => (empty($params["fldDoB1"]) ? NULL : $params["fldDoB1"]),
-                    "p1dec"         => (empty($params["fldDec1"]) ? NULL : $params["fldDec1"]),
-                    "p2name"        => (empty($params["fldParentName2"]) ? NULL : $params["fldParentName2"]),
-                    "p2dob"         => (empty($params["fldDoB2"]) ? NULL : $params["fldDoB2"]),
-                    "p2dec"         => (empty($params["fldDec2"]) ? NULL : $params["fldDec2"]),
-                    "p3name"        => (empty($params["fldParentName3"]) ? NULL : $params["fldParentName3"]),
-                    "p3dob"         => (empty($params["fldDoB3"]) ? NULL : $params["fldDoB3"]),
-                    "p3dec"         => (empty($params["fldDec3"]) ? NULL : $params["fldDec3"]),
-                    "p4name"        => (empty($params["fldParentName4"]) ? NULL : $params["fldParentName4"]),
-                    "p4dob"         => (empty($params["fldDoB4"]) ? NULL : $params["fldDoB4"]),
-                    "p4dec"         => (empty($params["fldDec4"]) ? NULL : $params["fldDec4"]),
-                    "p5name"        => (empty($params["fldParentName5"]) ? NULL : $params["fldParentName5"]),
-                    "p5dob"         => (empty($params["fldDoB5"]) ? NULL : $params["fldDoB5"]),
-                    "p5dec"         => (empty($params["fldDec5"]) ? NULL : $params["fldDec5"]),
-		            "goal"          => (empty($params["fldGoal"]) ? NULL : $params["fldGoal"]),
-		            "scholarship"   => (empty($params["fldScholarship"]) ? NULL : $params["fldScholarship"]),
-                    "graduation"    => (empty($params["fldGraduation"]) ? NULL : $params["fldGraduation"]),
-                    "profession"    => (empty($params["fldProfession"]) ? NULL : $params["fldProfession"]),
-                    "linkedinurl"   => (empty($params["fldLinkedin"]) ? NULL : $params["fldLinkedin"]),		            
-                    "gradlocation"  => (empty($params["fldGradLocation"]) ? NULL : $params["fldGradLocation"]),
-                    "enem"          => (($goal == "2") ? $params["fldENEM"] : NULL),
-                    "gradcourse"    => (empty($params["fldCourse"]) ? NULL : $params["fldCourse"]),
-		            "comment1"      => (($goal == "1") ? $params["fldObs"] : NULL),
-                    "invsegment"    => (empty($params["fldMarketSeg"]) ? NULL : $params["fldMarketSeg"]),
-                    "previsit"      => (($goal == "3") ? $params["fldPrevVisit"] : NULL),
-                    "invtlocation"  => (($goal == "3") ? $params["fldLocationToInv"] : NULL),
-                    "invbudget"     => (($goal == "3") ? $params["fldInvest"] : NULL),
-                    "comment3"      => (($goal == "3") ? $params["fldBPlan"] : NULL),
-                    "retdstatus"    => (($goal == "4") ? $params["fldSitRet"] : NULL),
-                    "retwage"       => (($goal == "4") ? $params["fldRetWage"] : NULL),
-                    "retdlocation"  => (($goal == "4") ? $params["fldLocationToRet"] : NULL),
-                    "retdalone"     => (($goal == "4") ? $params["fldRetCompany"] : NULL),
-                    "retminorspon"  => (($goal == "4") ? $params["fldIsSponsor"] : NULL),
-                    "comment2"      => (($goal == "2") ? $params["fldObs"] : NULL),
-                    "comment4"      => (($goal == "4") ? $params["fldObs"] : NULL),
-                    "comment5"      => (($goal == "5") ? $params["fldObs"] : NULL)           
-		        ));
+		        $stmt = "";
+		        $flds = "CLIENT, ISPORTUGUESE, BONDS, GOAL, ";
+		        $prms = ":client, :isportuguese, :bonds, :goal, ";
+		        
+		        if ($params["BONDS"] != "00000"){
+    	            for ($i=1; $i<6; $i++){
+    	                $flds .= sprintf("P%uNAME, P%uDOB, P%uDEC, ", $i, $i, $i);
+    	            }
+    	            $flds = rtrim($flds,', ');
+    	            for ($i=1; $i<6; $i++){
+    	                $prms .= sprintf(":p%uname, :p%udob, :p%udec, ", $i, $i, $i);
+    	            }
+    	            $prms = rtrim($prms,', ');
+		        }
+		        else{
+		            $goal = (empty($params["fldGoal"]) ? 0 : $params["fldGoal"]);
+		            switch($goal){
+		                case 1: //Profissional qualificado
+		                    $flds .= "SCHOLARSHIP, GRADUATION, PROFESSION, LINKEDINURL, GRADLOCATION, COMMENT1";
+		                    $prms .= ":scholarship, :graduation, :profession, :linkedinurl, :gradlocation, :comment1";
+		                    break;
+		                case 2: //Estudante universitário
+		                    $flds .= "SCHOLARSHIP, GRADUATION, GRADLOCATION, ENEM, GRADCOURSE, COMMENT2";
+		                    $prms .= ":scholarship, :graduation, :gradlocation, :enem, :gradcourse, :comment2";
+		                    break;
+		                case 3: //Empreendedor / Investidor
+		                    $flds .= "INVSEGMENT, PREVISIT, INVTLOCATION, INVBUDGET, COMMENT3";
+		                    $prms .= ":invsegment, :previsit, :invtlocation, :invbudget, :comment3";
+		                    break;
+		                case 4: //Aposentado
+		                    $flds .= "RETDSTATUS, RETWAGE, RETDLOCATION, RETDALONE, RETMINORSPON";
+		                    $prms .= ":retdstatus, :retwage, :retdlocation, :retdalone, :retminorspon";
+		                    break;
+		                case 5: //Titular de Rendimentos Próprios
+		                    $flds .= "COMMENT4";
+		                    $prms .= ":comment4";
+		                    break;
+		                case 6: //Pessoa notória
+		                    $flds .= "COMMENT5";
+		                    $prms .= ":comment5";
+		                    break;
+		            }
+		        }
+		        		        
+	            $client = $this->getLastId();
+		        $profile = array(
+		            "client"        => $client,
+		            "isportuguese"  => $params["ISPORTUGUESE"],
+		            "bonds"         => $params["BONDS"],
+		            "goal"          => (empty($params["fldGoal"]) ? NULL : $params["fldGoal"])
+		        );
+		        
+		        if ($params["BONDS"] != "00000"){
+		            $profile = array_merge($profile, 
+		                array(
+                            "p1name"        => (empty($params["fldParentName1"]) ? NULL : cleanup_string(strtoupper($params["fldParentName1"]))),
+                            "p1dob"         => (empty($params["fldDoB1"]) ? NULL : $params["fldDoB1"]),
+                            "p1dec"         => (empty($params["fldDec1"]) ? NULL : $params["fldDec1"]),
+                            "p2name"        => (empty($params["fldParentName2"]) ? NULL : cleanup_string(strtoupper($params["fldParentName2"]))),
+                            "p2dob"         => (empty($params["fldDoB2"]) ? NULL : $params["fldDoB2"]),
+                            "p2dec"         => (empty($params["fldDec2"]) ? NULL : $params["fldDec2"]),
+                            "p3name"        => (empty($params["fldParentName3"]) ? NULL : cleanup_string(strtoupper($params["fldParentName3"]))),
+                            "p3dob"         => (empty($params["fldDoB3"]) ? NULL : $params["fldDoB3"]),
+                            "p3dec"         => (empty($params["fldDec3"]) ? NULL : $params["fldDec3"]),
+                            "p4name"        => (empty($params["fldParentName4"]) ? NULL : cleanup_string(strtoupper($params["fldParentName4"]))),
+                            "p4dob"         => (empty($params["fldDoB4"]) ? NULL : $params["fldDoB4"]),
+                            "p4dec"         => (empty($params["fldDec4"]) ? NULL : $params["fldDec4"]),
+                            "p5name"        => (empty($params["fldParentName5"]) ? NULL : cleanup_string(strtoupper($params["fldParentName5"]))),
+                            "p5dob"         => (empty($params["fldDoB5"]) ? NULL : $params["fldDoB5"]),
+                            "p5dec"         => (empty($params["fldDec5"]) ? NULL : $params["fldDec5"])
+		              )
+		            ); 
+		        }
+		        else{
+		            switch($goal){
+		                case 1: //Profissional qualificado
+		                    $dados = array(
+		                        "scholarship"   => (empty($params["fldScholarship"]) ? NULL : $params["fldScholarship"]),
+		                        "graduation"    => (empty($params["fldGraduation"]) ? NULL : cleanup_string(strtoupper($params["fldGraduation"]))),
+		                        "profession"    => (empty($params["fldProfession"]) ? NULL : cleanup_string(strtoupper($params["fldProfession"]))),
+		                        "linkedinurl"   => (empty($params["fldLinkedin"]) ? NULL : cleanup_string(strtolower($params["fldLinkedin"]))),
+		                        "gradlocation"  => (empty($params["fldGradLocation"]) ? NULL : $params["fldGradLocation"]),
+		                        "comment1"      => cleanup_string($params["fldObs"])
+		                    );
+		                    break;
+		                case 2: //Estudante universitário
+		                    $dados = array(
+		                        "scholarship"   => (empty($params["fldScholarship"]) ? NULL : $params["fldScholarship"]),
+		                        "graduation"    => (empty($params["fldGraduation"]) ? NULL : $params["fldGraduation"]),
+		                        "gradlocation"  => (empty($params["fldGradLocation"]) ? NULL : $params["fldGradLocation"]),
+		                        "enem"          => $params["fldENEM"],
+		                        "gradcourse"    => (empty($params["fldCourse"]) ? NULL : cleanup_string(strtoupper($params["fldCourse"]))),
+		                        "comment2"      => cleanup_string($params["fldObs"])
+		                    );
+		                    break;
+		                case 3: //Empreendedor / Investidor
+		                    $dados = array(
+                                "invsegment"    => (empty($params["fldMarketSeg"]) ? NULL : cleanup_string(strtoupper($params["fldMarketSeg"]))),
+                                "previsit"      => $params["fldPrevVisit"],
+                                "invtlocation"  => $params["fldLocationToInv"],
+                                "invbudget"     => $params["fldInvest"],
+                                "comment3"      => cleanup_string($params["fldBPlan"])
+		                    );
+		                    break;
+		                case 4: //Aposentado
+		                    $dados = array(
+		                        "retdstatus"    => $params["fldSitRet"],
+		                        "retwage"       => $params["fldRetWage"],
+		                        "retdlocation"  => $params["fldLocationToRet"],
+		                        "retdalone"     => $params["fldRetCompany"],
+		                        "retminorspon"  => $params["fldIsSponsor"]
+		                    );
+		                    break;
+		                case 5: //Titular de Rendimentos Próprios
+		                    $dados = array(
+                                "comment4"      => cleanup_string($params["fldObs"])
+		                    );
+		                    break;
+		                case 6: //Pessoa notória
+		                    $dados = array(
+                                "comment5"      => cleanup_string($params["fldObs"])
+		                    );
+		                    break;
+		            }
+		            
+		        }
+		        $stmt  = sprintf("INSERT INTO ES_PROFILE (%s) VALUES (%s)", $flds, $prms);
+		        if (!isset($dados)){
+		            $rowsAffected = $this->dbc->execute($stmt, $profile);
+		        }
+		        else{
+		            $rowsAffected = $this->dbc->execute($stmt, array_merge($profile, $dados));
+		        }
 		        $this->dbc->endTransaction();
 		    }
 		    catch(Exception $e){

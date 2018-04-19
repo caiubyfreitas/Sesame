@@ -146,10 +146,35 @@ var prospect = (function(){
 				global.ShowWaitCursor(true);				
 				$.each(data.ROWS, function(idx, record){
 					
+					switch(parseInt(record.GOAL)){
+					case 1:
+						goal = "Profissional";
+						break;
+					case 2:
+						goal = "Estudante";
+						break;
+					case 3:
+						goal = "Empreendedor";
+						break;
+					case 4:
+						goal = "Aposentado";
+						break;
+					case 5:
+						goal = "Rendimentos Próprios";
+						break;
+					case 6:
+						goal = "Pessoa Notória";
+						break;
+					default:
+						goal = "Parente Português";
+					}
+					
 					// Create HTML output for each record retrieved
-					str  = "<tr><td style=\"width:10%\">" + (++idx) + "</td>";
-					str += "<td style=\"width:40%\">" + record.NAME + "</td>";
-					str += "<td style=\"width:40%\">" + record.EMAIL + "</td>";
+					str  = "<tr><td style=\"width:5%\">" + (++idx) + "</td>";
+					str += "<td style=\"width:10%\">" + goal + "</td>";
+					str += "<td>" + record.NAME + "</td>";
+					str += "<td>" + record.EMAIL + "</td>";
+					str += "<td style=\"width:10%\">" + record.LAST_UPDATE + "</td>";
 					str += "<td class=\"text-center\" style=\"width:10%\">";
 					str += "<a href=\"#\" class=\"btn btn-info btn-sm\" id=\"lnkEdit" + (idx) + "\" data-id=\"" + (record.ID) + "\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i> Ver</a>&nbsp;"
 					str += "<a href=\"#\" class=\"btn btn-danger btn-sm\" id=\"lnkRemove" + (idx) + "\" data-id=\"" + (record.ID) + "\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>";
@@ -235,7 +260,7 @@ var prospect = (function(){
 			$("#Prospect-Edit #fldComment3").val(data.ROWS[0].COMMENT3);
 			$("#Prospect-Edit #fldComment4").val(data.ROWS[0].COMMENT4);
 			$("#Prospect-Edit #fldComment5").val(data.ROWS[0].COMMENT5);
-
+			
 			// Checkbox group
 			var bitValue = data.ROWS[0].BONDS;
 			var totalItems = ($("input[name=fldBonds]").length * bitValue.length - 7); 

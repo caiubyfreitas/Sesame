@@ -22,8 +22,10 @@
 						<thead>
 							<tr class="table_header">
 								<th style="width: 40px">#</th>
+								<th>Objetivo</th>
 								<th>Nome completo</th>
 								<th>E-mail</th>
+								<th>Data de Envio</th>
 								<th>Ações</th>
 							</tr>
 						</thead>
@@ -104,25 +106,22 @@
 						    <a class="nav-link active" data-toggle="tab" href="#Prospect-Tab1" role="tab">Dados básicos</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab2" role="tab">Formacão Acadêmica</a>
+						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab2" role="tab">Perfil Profissional</a>
 						  </li>
 						  <li class="nav-item">
 						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab3" role="tab">Perfil Estudante</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab4" role="tab">Perfil Profissional</a>
+						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab4" role="tab">Perfil Empreendedor</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab5" role="tab">Perfil Empreendedor</a>
+						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab5" role="tab">Perfil Aposentado</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab6" role="tab">Perfil Aposentado</a>
+						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab6" role="tab">Rendimentos Próprios</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab7" role="tab">Rendimentos Próprios</a>
-						  </li>
-						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab8" role="tab">Pessoa Notória</a>
+						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab7" role="tab">Pessoa Notória</a>
 						  </li>
 						</ul>
 
@@ -211,10 +210,10 @@
 								</div>
 							</div>
 
-							<!-- Pane: Formação Acadêmica do Prospecto -->
+							<!-- Pane: Perfil Profissional do Prospecto -->
 							<div class="tab-pane" id="Prospect-Tab2">
 								<div class="row">
-									<div class="col">
+									<div class="col-4">
 										<label for="recipient-name" class="control-label">Nível de escolaridade</label>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
@@ -227,16 +226,64 @@
 											</select>
 										</div>
 									</div>
+									<div class="col-8">
+        								<div class="row">
+        									<div class="col">
+        										<label for="recipient-name" class="control-label">Formação acadêmica</label>
+        										<input type="text" class="form-control" id="fldGraduation">		
+        									</div>															
+        								</div>
+									</div>
 								</div>
 								<div class="row">
+    								<div class="col">
+    									<label for="recipient-name" class="control-label">Qual é profissão pretende exercer?</label>
+    									<input type="text" class="form-control form-control-danger" id="fldProfession">		
+    								</div>															
 									<div class="col">
-										<label for="recipient-name" class="control-label">Formação acadêmica</label>
-										<input type="text" class="form-control" id="fldGraduation">		
+										<label for="recipient-name" class="control-label">Página do Linkedin</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
+											<input type="text" class="form-control form-control-danger" id="fldLinkedin">		
+										</div>												
 									</div>															
 								</div>
 								<div class="row">
 									<div class="col">
-										<label for="recipient-name" class="control-label">Diploma emitido por</label>
+										<label for="recipient-name" class="control-label">Observações</label>
+										<textarea id="fldComment1" class="form-control" rows="8"></textarea>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Pane: Perfil Estudante do Prospecto -->
+							<div class="tab-pane" id="Prospect-Tab3">
+								<div class="row">
+									<div class="col-4">
+										<label for="recipient-name" class="control-label">Nível de escolaridade</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+											<select class="form-control" id="fldScholarship">
+												<option value="1">1 - Médio completo</option>
+												<option value="2">2 - Superior incompleto</option>
+												<option value="3" selected>3 - Superior completo</option>
+												<option value="4">4 - Pós-graduação incompleto</option>
+												<option value="5">5 - Pós-graduação completo</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-8">
+        								<div class="row">
+        									<div class="col">
+        										<label for="recipient-name" class="control-label">Formação acadêmica</label>
+        										<input type="text" class="form-control" id="fldGraduation">	
+        									</div>	
+       									</div>
+									</div>
+								</div>															
+								<div class="row">
+									<div class="col-3">
+										<label for="recipient-name" class="control-label">Diploma emitido em</label>
 										<div class="input-group">
 											<select class="form-control" id="fldGradLocation">
 												<option value="1" selected>1 - Brasil</option>
@@ -245,21 +292,6 @@
 											</select>
 										</div>		
 									</div>														
-								</div>
-							</div>
-							
-							<!-- Pane: Perfil Estudante do Prospecto -->
-							<div class="tab-pane" id="Prospect-Tab3">
-								<div class="row">
-									<div class="col">
-										<label for="recipient-name" class="control-label">O que pretende cursar?</label>
-										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-bullseye" aria-hidden="true"></i></span>
-											<input type="text" class="form-control" id="fldCourse">		
-										</div>											
-									</div>
-								</div>
-								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Fez ENEM?</label>
 										<div class="input-group">
@@ -278,28 +310,12 @@
 								</div>
 								<div class="row">
 									<div class="col">
-										<label for="recipient-name" class="control-label">Observações</label>
-										<textarea id="fldComment1" class="form-control" rows="8"></textarea>
-									</div>
-								</div>
-							</div>
-							
-							<!-- Pane: Perfil Profissional do Prospecto -->
-							<div class="tab-pane" id="Prospect-Tab4">
-								<div class="row">
-									<div class="col">
-										<label for="recipient-name" class="control-label">Qual é profissão pretende exercer?</label>
-										<input type="text" class="form-control form-control-danger" id="fldProfession">		
-									</div>															
-								</div>
-								<div class="row">
-									<div class="col">
-										<label for="recipient-name" class="control-label">Página do Linkedin</label>
+										<label for="recipient-name" class="control-label">O que pretende cursar?</label>
 										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
-											<input type="text" class="form-control form-control-danger" id="fldLinkedin">		
-										</div>												
-									</div>															
+											<span class="input-group-addon"><i class="fa fa-bullseye" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" id="fldCourse">		
+										</div>											
+									</div>
 								</div>
 								<div class="row">
 									<div class="col">
@@ -310,7 +326,7 @@
 							</div>
 							
 							<!-- Pane: Dados de Empreendedor do Prospecto -->
-							<div class="tab-pane" id="Prospect-Tab5">
+							<div class="tab-pane" id="Prospect-Tab4">
 								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Em qual segmento/ramo de atividade pretende investir?</label>
@@ -319,8 +335,6 @@
 											<input type="text" class="form-control" id="fldMarketSeg">		
 										</div>															
 									</div>
-								</div>
-								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Já esteve em Portugal?</label>
 										<div class="input-group">
@@ -366,9 +380,7 @@
 											</select>
 										</div>	
 									</div>
-								</div>
-								<div class="row">
-									<div class="col">
+									<div class="col-4">
 										<label for="recipient-name" class="control-label">Quanto investirá inicialmente?</label>
 										<div class="input-group">
 											<span class="input-group-addon"><i class="fa fa-eur" aria-hidden="true"></i></span>
@@ -385,7 +397,7 @@
 							</div>
 							
 							<!-- Pane: Dados de Aposentado do Prospecto -->
-							<div class="tab-pane" id="Prospect-Tab6">
+							<div class="tab-pane" id="Prospect-Tab5">
 								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Qual é sua situação atual?</label>
@@ -398,15 +410,13 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col">
+									<div class="col-4">
 										<label for="recipient-name" class="control-label">Renda mensal média</label>
 										<div class="input-group">
 											<span class="input-group-addon">R$</span>
 											<input type="text" class="form-control money-field" id="fldRetWage" maxlength="6" size="7">		
 										</div>
 									</div>
-								</div>
-								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Em qual região prefere viver?</label>
 										<div class="input-group">
@@ -448,8 +458,6 @@
 											</select>
 										</div>
 									</div>
-								</div>
-								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Será responsável por menores de 18 anos?</label>
 										<div class="input-group">
@@ -469,7 +477,7 @@
 							</div>
 							
 							<!-- Pane: Dados de Rendimentos Próprios do Prospecto -->
-							<div class="tab-pane" id="Prospect-Tab7">
+							<div class="tab-pane" id="Prospect-Tab6">
 								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Observações</label>
@@ -479,7 +487,7 @@
 							</div>
 							
 							<!-- Pane: Dados de Pessoa Notória do Prospecto -->
-							<div class="tab-pane" id="Prospect-Tab8">
+							<div class="tab-pane" id="Prospect-Tab7">
 								<div class="row">
 									<div class="col">
 										<label for="recipient-name" class="control-label">Observações</label>

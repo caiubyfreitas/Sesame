@@ -282,14 +282,14 @@
 												<label for="recipient-name" class="control-label">Telefone fixo</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
-													<input type="text" class="form-control" id="fldLandLine" name="TEL1">	
+													<input type="text" class="form-control" id="fldLandLine" name="TEL1" maxlength=20>	
 												</div>
 											</div>
 											<div class="col-6">
 												<label for="recipient-name" class="control-label">Telefone móvel</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
-													<input type="text" class="form-control" id="fldMobilePhone" name="TEL2">							
+													<input type="text" class="form-control" id="fldMobilePhone" name="TEL2" maxlength=20>							
 												</div>
 											</div>	
 										</div>
@@ -682,7 +682,7 @@
 											<div class="col-7">
 												<div id="fldGraduationGroup" class="P4AF1 P4AF2">
 													<label for="recipient-name" class="control-label">Formação acadêmica (atual)</label>
-													<input type="text" class="form-control form-control-danger" name="fldGraduation">		
+													<input type="text" class="form-control form-control-danger" name="fldGraduation" maxlength=40>		
 													<small class="text-danger collapse" id="fldGraduationValidationMsg">Informe o título que foi conferido pela universidade.</small>										
 												</div>											
 											</div>	
@@ -704,7 +704,7 @@
 												<label for="recipient-name" class="control-label">Página do Linkedin</label>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
-													<input type="text" class="form-control form-control-danger" name="fldLinkedin">		
+													<input type="text" class="form-control form-control-danger" name="fldLinkedin" maxlength=40>		
 												</div>
 											</div>
 										</div>
@@ -713,7 +713,7 @@
 										<div class="row">
 											<div class="col-3">
 												<div id="fldGradLocationGroup">
-													<label for="recipient-name" class="control-label">Diploma emitido por?</label>
+													<label for="recipient-name" class="control-label">Diploma emitido em?</label>
 													<div class="input-group">
 														<select class="form-control" name="fldGradLocation">
 															<option value="1" selected>1 - Brasil</option>
@@ -749,20 +749,20 @@
 													<label for="recipient-name" class="control-label">O que pretende cursar?</label>
 													<div class="input-group">
 														<span class="input-group-addon"><i class="fa fa-bullseye" aria-hidden="true"></i></span>
-														<input type="text" class="form-control form-control-danger" name="fldCourse">		
+														<input type="text" class="form-control form-control-danger" name="fldCourse" maxlength=40>		
 													</div>
 													<small class="text-danger collapse" id="fldCourseValidationMsg">Preenchimento obrigatório.</small>
 												</div>
 											</div>
 										</div>										
 									</div>
-									<div class="form-group P4AF1 P4AF2">
+									<div class="form-group P4AF1 P4AF2 P4AF5 P4AF6">
 										<div class="row">	
 											<div class="col">
 												<div id="fldObsGroup">
 													<label for="recipient-name" class="control-label">Observações (opcional):</label>
 													<div class="input-group">
-														<textarea name="fldObs" class="form-control" rows="4" placeholder="Insira aqui informações adicionais que considera relevantes. Sugestões: expectativa de ganhos financeiros, segmento de mercado no qual trabalhará ou tem interesse, alguma especialidade reconhecida, tempo de experiência, se já possui currículo escrito em inglês."></textarea>
+														<textarea name="fldObs" class="form-control" rows="4" placeholder="Insira aqui informações adicionais que considera relevantes."></textarea>
 													</div>
 												</div>
 											</div>
@@ -775,7 +775,7 @@
 													<label for="recipient-name" class="control-label">Em qual segmento/ramo de atividade pretende investir?</label>
 													<div class="input-group">
 														<span class="input-group-addon"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
-														<input type="text" class="form-control form-control-danger" name="fldMarketSeg">		
+														<input type="text" class="form-control form-control-danger" name="fldMarketSeg" maxlength=40>		
 													</div>
 													<small class="text-danger collapse" id="fldMarketSegValidationMsg">Preenchimento obrigatório.</small>
 												</div>
@@ -970,7 +970,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<div class="modal-title text-center align-middle">
-							<strong>Concluído com Sucesso!</strong>
+							<strong><span id="submission-title">Concluído com Sucesso!</span></strong>
 						</div>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar tela">
 						  <span aria-hidden="true">&times;</span>

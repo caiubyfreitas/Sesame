@@ -97,10 +97,10 @@
 											    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab2" role="tab">Formacão Acadêmica</a>
 											  </li>
 											  <li class="nav-item">
-											    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab3" role="tab">Perfil Estudante</a>
+											    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab3" role="tab">Perfil Profissional</a>
 											  </li>
 											  <li class="nav-item">
-											    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab4" role="tab">Perfil Profissional</a>
+											    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab4" role="tab">Perfil Estudante</a>
 											  </li>
 											  <li class="nav-item">
 											    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab5" role="tab">Perfil Empreendedor</a>
@@ -238,8 +238,33 @@
 													</div>
 												</div>
 												
-												<!-- Pane: Perfil Estudante do Prospecto -->
+												<!-- Pane: Perfil Profissional do Prospecto -->
 												<div class="tab-pane" id="Prospect-Tab3">
+													<div class="row">
+														<div class="col">
+															<label for="recipient-name" class="control-label">Qual é profissão pretende exercer?</label>
+															<input type="text" class="form-control form-control-danger" id="fldProfession">		
+														</div>															
+													</div>
+													<div class="row">
+														<div class="col">
+															<label for="recipient-name" class="control-label">Página do Linkedin</label>
+															<div class="input-group">
+																<span class="input-group-addon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
+																<input type="text" class="form-control form-control-danger" id="fldLinkedin">		
+															</div>												
+														</div>															
+													</div>
+													<div class="row">
+														<div class="col">
+															<label for="recipient-name" class="control-label">Observações</label>
+															<textarea id="fldObsTab3" class="form-control" rows="8"></textarea>
+														</div>
+													</div>
+												</div>
+												
+												<!-- Pane: Perfil Estudante do Prospecto -->
+												<div class="tab-pane" id="Prospect-Tab4">
 													<div class="row">
 														<div class="col">
 															<label for="recipient-name" class="control-label">O que pretende cursar?</label>
@@ -269,35 +294,10 @@
 													<div class="row">
 														<div class="col">
 															<label for="recipient-name" class="control-label">Observações</label>
-															<textarea id="fldObsTab3" class="form-control" rows="8"></textarea>
-														</div>
-													</div>
-												</div>
-												
-												<!-- Pane: Perfil Profissional do Prospecto -->
-												<div class="tab-pane" id="Prospect-Tab4">
-													<div class="row">
-														<div class="col">
-															<label for="recipient-name" class="control-label">Qual é profissão pretende exercer?</label>
-															<input type="text" class="form-control form-control-danger" id="fldProfession">		
-														</div>															
-													</div>
-													<div class="row">
-														<div class="col">
-															<label for="recipient-name" class="control-label">Página do Linkedin</label>
-															<div class="input-group">
-																<span class="input-group-addon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
-																<input type="text" class="form-control form-control-danger" id="fldLinkedin">		
-															</div>												
-														</div>															
-													</div>
-													<div class="row">
-														<div class="col">
-															<label for="recipient-name" class="control-label">Observações</label>
 															<textarea id="fldObsTab4" class="form-control" rows="8"></textarea>
 														</div>
 													</div>
-												</div>
+												</div>												
 												
 												<!-- Pane: Dados de Empreendedor do Prospecto -->
 												<div class="tab-pane" id="Prospect-Tab5">

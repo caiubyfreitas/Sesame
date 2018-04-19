@@ -130,8 +130,15 @@ class ProspectController extends Controller{
         $this->connect();
         $this->model = new Prospect($this->dbc);
         try{
-            $rowsAffected = $this->model->add($this->params);
-            $this->setResult($rowsAffected, array(), 0, utf8_encode("Cadastro concluído."));
+            // check if prospect already exists
+            if ($this->model->exists($this->params)){
+                $this->setResult(0, array(), 0, utf8_encode("Email ou nome já utilizado em outro cadastro."));
+            }
+            else{
+                //Otherwise, save a new prospect
+                $rowsAffected = $this->model->add($this->params);
+                $this->setResult($rowsAffected, array(), 0, utf8_encode("Cadastro concluído."));
+            }
         }
         catch(Exception $e){
             $this->setResult(0, $this->params, 0, $e->getMessage());
