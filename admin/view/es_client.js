@@ -83,9 +83,7 @@ var client = (function(){
 				{ 
 					"id" : data 
 				},
-				function(data){
-					client.ShowGridView($("#Client-View-Pagination li.active a").text());
-				},
+				global.goToPage("es_client.php"),
 				function(data){
 					console.log(data)
 				}
@@ -190,6 +188,14 @@ var client = (function(){
 		// Shows record view page
 		ShowRecordView: function(data){
 			global.ShowWaitCursor(true);
+			
+			$("#tab2").hide();
+			$("#tab3").hide();
+			$("#tab4").hide();
+			$("#tab5").hide();
+			$("#tab6").hide();
+			$("#tab7").hide();
+			$("#tab8").hide();
 
 			// Fill up regular fields
 			$("#Client-Edit #fldName").val(data.ROWS[0].NAME);
@@ -218,7 +224,22 @@ var client = (function(){
 			$("#Client-Edit #fldComment3").val(data.ROWS[0].COMMENT3);
 			$("#Client-Edit #fldComment4").val(data.ROWS[0].COMMENT4);
 			$("#Client-Edit #fldComment5").val(data.ROWS[0].COMMENT5);
-			
+			$("#Client-Edit #fldParentName1").val(data.ROWS[0].P1NAME);
+			$("#Client-Edit #fldParentName2").val(data.ROWS[0].P2NAME);
+			$("#Client-Edit #fldParentName3").val(data.ROWS[0].P3NAME);
+			$("#Client-Edit #fldParentName4").val(data.ROWS[0].P4NAME);
+			$("#Client-Edit #fldParentName5").val(data.ROWS[0].P5NAME);
+			$("#Client-Edit #fldDoB1").val(data.ROWS[0].P1DOB);
+			$("#Client-Edit #fldDoB2").val(data.ROWS[0].P2DOB);
+			$("#Client-Edit #fldDoB3").val(data.ROWS[0].P3DOB);
+			$("#Client-Edit #fldDoB4").val(data.ROWS[0].P4DOB);
+			$("#Client-Edit #fldDoB5").val(data.ROWS[0].P5DOB);
+			$("#Client-Edit input[name=fldDec1][value=" + data.ROWS[0].P1DEC + "]").prop("checked", true);
+			$("#Client-Edit input[name=fldDec2][value=" + data.ROWS[0].P2DEC + "]").prop("checked", true);
+			$("#Client-Edit input[name=fldDec3][value=" + data.ROWS[0].P3DEC + "]").prop("checked", true);
+			$("#Client-Edit input[name=fldDec4][value=" + data.ROWS[0].P4DEC + "]").prop("checked", true);
+			$("#Client-Edit input[name=fldDec5][value=" + data.ROWS[0].P5DEC + "]").prop("checked", true);
+
 			// Checkbox group
 			var bitValue = data.ROWS[0].BONDS;
 			var totalItems = ($("input[name=fldBonds]").length * bitValue.length - 7); 
@@ -227,7 +248,31 @@ var client = (function(){
 					$("#Client-Edit input[name=fldBonds][value=" + i + "]").prop("checked", true);
 				}
 			}			
-		
+			
+			switch(parseInt(data.ROWS[0].GOAL)){
+			case 1:
+				$("#tab2").show();
+				break;
+			case 2:
+				$("#tab3").show();
+				break;
+			case 3:
+				$("#tab4").show();
+				break;
+			case 4:
+				$("#tab5").show();
+				break;
+			case 5:
+				$("#tab6").show();
+				break;
+			case 6:
+				$("#tab7").show();
+				break;
+			default:
+				$("#tab8").show();
+				break;
+			}	
+	
 			// Show & Hide
 			$("#Client-View").hide();				
 			$("#Client-Edit-DataView").show();

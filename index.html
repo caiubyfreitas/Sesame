@@ -132,7 +132,7 @@
 								<h3 class="card-title">Escolha o futuro que deseja ter!</h3>
 								<p class="card-text">Nosso trabalho começa com a avaliação do seu perfil imigratório. Desta forma podemos conhecer suas expectativas para propor a melhor forma de realizar seu sonho. É descomplicado e funciona assim:</p>
 								<ol>
-									<li>Você preenche um questionário bem fácil e objetivo (tempo estimado: de 10 a 20 minutos).</li>
+									<li>Você preenche um questionário bem fácil e objetivo (10 minutos).</li>
 									<li>Seus dados que serão analisados pela nossa equipe em até 24 horas.</li>
 									<li>Nossa equipe enviará e-mail com instruções para acesso ao resultado da avaliação.</li>
 								</ol>
@@ -444,7 +444,7 @@
 											<div class="row">
 												<div class="col-7">
 													<label for="recipient-name" class="control-label">Nome completo do pai ou da mãe</label>
-													<input type="text" class="form-control form-control-danger" id="fldParentName1" name="fldParentName1">		
+													<input type="text" class="form-control form-control-danger" id="fldParentName1" name="fldParentName1" maxlength=50>		
 												</div>
 												<div class="col-3">
 													<label for="recipient-name" class="control-label">Nascimento</label>
@@ -469,7 +469,7 @@
 											<div class="row">
 												<div class="col-7">
 													<label for="recipient-name" class="control-label">Nome completo do cônjuge</label>
-													<input type="text" class="form-control form-control-danger" id="fldParentName2" name="fldParentName2">		
+													<input type="text" class="form-control form-control-danger" id="fldParentName2" name="fldParentName2" maxlength=50>		
 												</div>
 												<div class="col-3">
 													<label for="recipient-name" class="control-label">Nascimento</label>
@@ -494,7 +494,7 @@
 											<div class="row">
 												<div class="col-7">
 													<label for="recipient-name" class="control-label">Nome completo do(a) filho(a)</label>
-													<input type="text" class="form-control form-control-danger" id="fldParentName3" name="fldParentName3">		
+													<input type="text" class="form-control form-control-danger" id="fldParentName3" name="fldParentName3" maxlength=50>		
 												</div>
 												<div class="col-3">
 													<label for="recipient-name" class="control-label">Nascimento</label>
@@ -519,7 +519,7 @@
 											<div class="row">
 												<div class="col-7">
 													<label for="recipient-name" class="control-label">Nome completo do avô ou avó</label>
-													<input type="text" class="form-control form-control-danger" id="fldParentName4" name="fldParentName4">		
+													<input type="text" class="form-control form-control-danger" id="fldParentName4" name="fldParentName4" maxlength=50>		
 												</div>
 												<div class="col-3">
 													<label for="recipient-name" class="control-label">Nascimento</label>
@@ -544,7 +544,7 @@
 											<div class="row">
 												<div class="col-7">
 													<label for="recipient-name" class="control-label">Nome completo do bisavô ou bisavó</label>
-													<input type="text" class="form-control form-control-danger" id="fldParentName5" name="fldParentName5">		
+													<input type="text" class="form-control form-control-danger" id="fldParentName5" name="fldParentName5" maxlength=50>		
 												</div>
 												<div class="col-3">
 													<label for="recipient-name" class="control-label">Nascimento</label>
@@ -1064,14 +1064,14 @@
 	<!-- WOW -->
 	<script src="js/wow.min.js"></script>
 
-    <!-- Theme JavaScript -->
+	<!-- Serialization Plugin -->
+	<script src="js/jquery.serializeJSON.js"></script>
+	
+	<!-- Theme JavaScript -->
     <script src="js/main.js"></script>
 	
 	<!-- Skype integration -->
 	<script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
-
-	<script type="text/javascript" src="js/jquery.serializejson.js"></script>
-
 
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
@@ -1080,8 +1080,8 @@
 	  js = d.createElement(s); js.id = id;
 	  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.10";
 	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	</script>	
+	}(document, 'script', 'facebook-jssdk'));</script>	
+
 	
 </body>
 </html>

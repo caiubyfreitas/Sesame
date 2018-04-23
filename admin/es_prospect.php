@@ -102,26 +102,29 @@
 
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-						  <li class="nav-item">
+						  <li class="nav-item" id="tab1">
 						    <a class="nav-link active" data-toggle="tab" href="#Prospect-Tab1" role="tab">Dados bÃ¡sicos</a>
 						  </li>
-						  <li class="nav-item">
+						  <li class="nav-item" id="tab2">
 						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab2" role="tab">Perfil Profissional</a>
 						  </li>
-						  <li class="nav-item">
+						  <li class="nav-item" id="tab3">
 						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab3" role="tab">Perfil Estudante</a>
 						  </li>
-						  <li class="nav-item">
+						  <li class="nav-item" id="tab4">
 						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab4" role="tab">Perfil Empreendedor</a>
 						  </li>
-						  <li class="nav-item">
+						  <li class="nav-item" id="tab5">
 						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab5" role="tab">Perfil Aposentado</a>
 						  </li>
-						  <li class="nav-item">
+						  <li class="nav-item" id="tab6">
 						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab6" role="tab">Rendimentos PrÃ³prios</a>
 						  </li>
-						  <li class="nav-item">
+						  <li class="nav-item" id="tab7">
 						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab7" role="tab">Pessoa NotÃ³ria</a>
+						  </li>
+						  <li class="nav-item" id="tab8">
+						    <a class="nav-link" data-toggle="tab" href="#Prospect-Tab8" role="tab">Parentesco</a>
 						  </li>
 						</ul>
 
@@ -496,6 +499,111 @@
 								</div>
 							</div>
 							
+							<!-- Pane: Dados de Parentesco -->
+							<div class="tab-pane" id="Prospect-Tab8">
+								<div class="row">
+									<div class="col-7">
+										<label for="recipient-name" class="control-label">Nome completo do pai ou da mãe</label>
+										<input type="text" class="form-control form-control-danger" id="fldParentName1" name="fldParentName1">		
+									</div>
+									<div class="col-3">
+										<label for="recipient-name" class="control-label">Nascimento</label>
+										<input type="text" class="form-control form-control-danger" id="fldDoB1" name="fldDoB1">		
+									</div>
+									<div class="col-2">
+										<label for="recipient-name" class="control-label ">Falecido(a)?</label>
+										<div class="input-group container">
+											<label class="custom-control custom-checkbox">
+												<input id="fldDec1" name="fldDec1" type="checkbox" class="custom-control-input" value="1">
+												<span class="custom-control-indicator"></span>
+												<span class="custom-control-description">Sim</span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-7">
+										<label for="recipient-name" class="control-label">Nome completo do cônjuge</label>
+										<input type="text" class="form-control form-control-danger" id="fldParentName2" name="fldParentName2">		
+									</div>
+									<div class="col-3">
+										<label for="recipient-name" class="control-label">Nascimento</label>
+										<input type="text" class="form-control form-control-danger" id="fldDoB2" name="fldDoB2">		
+									</div>
+									<div class="col-2">
+										<label for="recipient-name" class="control-label ">Falecido(a)?</label>
+										<div class="input-group container">
+											<label class="custom-control custom-checkbox">
+												<input id="fldDec2" name="fldDec2" type="checkbox" class="custom-control-input" value="1">
+												<span class="custom-control-indicator"></span>
+												<span class="custom-control-description">Sim</span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-7">
+										<label for="recipient-name" class="control-label">Nome completo do(a) filho(a)</label>
+										<input type="text" class="form-control form-control-danger" id="fldParentName3" name="fldParentName3">		
+									</div>
+									<div class="col-3">
+										<label for="recipient-name" class="control-label">Nascimento</label>
+										<input type="text" class="form-control form-control-danger" id="fldDoB3" name="fldDoB3">		
+									</div>
+									<div class="col-2">
+										<label for="recipient-name" class="control-label ">Falecido(a)?</label>
+										<div class="input-group container">
+											<label class="custom-control custom-checkbox">
+												<input id="fldDec3" name="fldDec3" type="checkbox" class="custom-control-input" value="1">
+												<span class="custom-control-indicator"></span>
+												<span class="custom-control-description">Sim</span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-7">
+										<label for="recipient-name" class="control-label">Nome completo do avô ou avó</label>
+										<input type="text" class="form-control form-control-danger" id="fldParentName4" name="fldParentName4">		
+									</div>
+									<div class="col-3">
+										<label for="recipient-name" class="control-label">Nascimento</label>
+										<input type="text" class="form-control form-control-danger" id="fldDoB4" name="fldDoB4">		
+									</div>
+									<div class="col-2">
+										<label for="recipient-name" class="control-label ">Falecido(a)?</label>
+										<div class="input-group container">
+											<label class="custom-control custom-checkbox">
+												<input id="fldDec4" name="fldDec4" type="checkbox" class="custom-control-input" value="1">
+												<span class="custom-control-indicator"></span>
+												<span class="custom-control-description">Sim</span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-7">
+										<label for="recipient-name" class="control-label">Nome completo do bisavô ou bisavó</label>
+										<input type="text" class="form-control form-control-danger" id="fldParentName5" name="fldParentName5">		
+									</div>
+									<div class="col-3">
+										<label for="recipient-name" class="control-label">Nascimento</label>
+										<input type="text" class="form-control form-control-danger" id="fldDoB5" name="fldDoB5">		
+									</div>
+									<div class="col-2">
+										<label for="recipient-name" class="control-label ">Falecido(a)?</label>
+										<div class="input-group container">
+											<label class="custom-control custom-checkbox">
+												<input id="fldDec5" name="fldDec5" type="checkbox" class="custom-control-input" value="1">
+												<span class="custom-control-indicator"></span>
+												<span class="custom-control-description">Sim</span>
+											</label>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+
 						</div>
 
 					</form>

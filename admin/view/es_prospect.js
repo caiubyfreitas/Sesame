@@ -83,9 +83,14 @@ var prospect = (function(){
 				{ 
 					"id" : data 
 				},
+				global.goToPage("es_prospect.php"),
+
+/*
 				function(data){
 					prospect.ShowGridView($("#Prospect-View-Pagination li.active a").text());
 				},
+				
+*/
 				function(data){
 					console.log(data)
 				}
@@ -232,13 +237,21 @@ var prospect = (function(){
 		// Shows record view page
 		ShowRecordView: function(data){
 			global.ShowWaitCursor(true);
+			
+			$("#tab2").hide();
+			$("#tab3").hide();
+			$("#tab4").hide();
+			$("#tab5").hide();
+			$("#tab6").hide();
+			$("#tab7").hide();
+			$("#tab8").hide();
 
 			// Fill up regular fields
 			$("#Prospect-Edit #fldName").val(data.ROWS[0].NAME);
 			$("#Prospect-Edit #fldEmail").val(data.ROWS[0].EMAIL);
 			$("#Prospect-Edit #fldtel1").val(data.ROWS[0].TEL1);
 			$("#Prospect-Edit #fldtel2").val(data.ROWS[0].TEL2);
-			$("#Prospect-Edit input[name=fldIsPortuguese][value=" + data.ROWS[0].ISPORTUGUESE + "]").prop("checked", true);
+			$("#Prospect-Edit input[name=fldIsPortuguese][value=" + data.ROWS[0].ISPORTUGUESE + "]").prop("checked", true);		
 			$("#Prospect-Edit #fldScholarship").val(data.ROWS[0].SCHOLARSHIP);
 			$("#Prospect-Edit #fldGraduation").val(data.ROWS[0].GRADUATION);
 			$("#Prospect-Edit #fldGradLocation").val(data.ROWS[0].GRADLOCATION);
@@ -260,6 +273,21 @@ var prospect = (function(){
 			$("#Prospect-Edit #fldComment3").val(data.ROWS[0].COMMENT3);
 			$("#Prospect-Edit #fldComment4").val(data.ROWS[0].COMMENT4);
 			$("#Prospect-Edit #fldComment5").val(data.ROWS[0].COMMENT5);
+			$("#Prospect-Edit #fldParentName1").val(data.ROWS[0].P1NAME);
+			$("#Prospect-Edit #fldParentName2").val(data.ROWS[0].P2NAME);
+			$("#Prospect-Edit #fldParentName3").val(data.ROWS[0].P3NAME);
+			$("#Prospect-Edit #fldParentName4").val(data.ROWS[0].P4NAME);
+			$("#Prospect-Edit #fldParentName5").val(data.ROWS[0].P5NAME);
+			$("#Prospect-Edit #fldDoB1").val(data.ROWS[0].P1DOB);
+			$("#Prospect-Edit #fldDoB2").val(data.ROWS[0].P2DOB);
+			$("#Prospect-Edit #fldDoB3").val(data.ROWS[0].P3DOB);
+			$("#Prospect-Edit #fldDoB4").val(data.ROWS[0].P4DOB);
+			$("#Prospect-Edit #fldDoB5").val(data.ROWS[0].P5DOB);
+			$("#Prospect-Edit input[name=fldDec1][value=" + data.ROWS[0].P1DEC + "]").prop("checked", true);
+			$("#Prospect-Edit input[name=fldDec2][value=" + data.ROWS[0].P2DEC + "]").prop("checked", true);
+			$("#Prospect-Edit input[name=fldDec3][value=" + data.ROWS[0].P3DEC + "]").prop("checked", true);
+			$("#Prospect-Edit input[name=fldDec4][value=" + data.ROWS[0].P4DEC + "]").prop("checked", true);
+			$("#Prospect-Edit input[name=fldDec5][value=" + data.ROWS[0].P5DEC + "]").prop("checked", true);
 			
 			// Checkbox group
 			var bitValue = data.ROWS[0].BONDS;
@@ -268,11 +296,35 @@ var prospect = (function(){
 				if (global.BitWiseTest(bitValue, i) > 0){
 					$("#Prospect-Edit input[name=fldBonds][value=" + i + "]").prop("checked", true);
 				}
-			}			
+			}		
+			
+			switch(parseInt(data.ROWS[0].GOAL)){
+			case 1:
+				$("#tab2").show();
+				break;
+			case 2:
+				$("#tab3").show();
+				break;
+			case 3:
+				$("#tab4").show();
+				break;
+			case 4:
+				$("#tab5").show();
+				break;
+			case 5:
+				$("#tab6").show();
+				break;
+			case 6:
+				$("#tab7").show();
+				break;
+			default:
+				$("#tab8").show();
+				break;
+			}	
 		
 			// Show & Hide
 			$("#Prospect-View").hide();				
-			$("#Prospect-Edit-DataView").show();
+			$("#Prospect-Edit-DataView").show();		
 			$("#Prospect-Edit-Commands").show();
 			$("#Prospect-Edit").show();
 			global.ShowWaitCursor(false);

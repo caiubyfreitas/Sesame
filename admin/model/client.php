@@ -61,9 +61,10 @@
 		
 		public function findById($params){
 			$row = NULL;
-			$stmt  = "SELECT NAME, EMAIL, TEL1, TEL2, ISPORTUGUESE, BONDS, SCHOLARSHIP, GRADLOCATION, ENEM, PREVISIT, INVTLOCATION, RETDSTATUS, ";
+			$stmt  = "SELECT NAME, EMAIL, TEL1, TEL2, ISPORTUGUESE, BONDS, GOAL, SCHOLARSHIP, GRADLOCATION, ENEM, PREVISIT, INVTLOCATION, RETDSTATUS, ";
 			$stmt .= "RETDLOCATION, RETMINORSPON, RETDALONE, GRADUATION, PROFESSION, LINKEDINURL, GRADCOURSE, INVSEGMENT, INVBUDGET, RETWAGE, ";
-			$stmt .= "COMMENT1, COMMENT2, COMMENT3, COMMENT4, COMMENT5 FROM ES_CLIENT a INNER JOIN ES_PROFILE b ON a.ID = b.CLIENT WHERE a.ID = :id";
+			$stmt .= "COMMENT1, COMMENT2, COMMENT3, COMMENT4, COMMENT5, P1NAME, P1DOB, P1DEC, P2NAME, P2DOB, P2DEC, P3NAME, P3DOB, P3DEC, P4NAME, P4DOB, P4DEC, P5NAME, P5DOB, P5DEC ";
+			$stmt .= "FROM ES_CLIENT a INNER JOIN ES_PROFILE b ON a.ID = b.CLIENT WHERE a.ID = :id";
 			try{
 				$row = $this->dbc->getRows($stmt, array( "id" => $params["id"] ));
 			}
@@ -169,7 +170,7 @@
 		
 		public function remove($params){
 		    $rowsAffected = 0;
-		    $stmt = "DELETE FROM ES_CLIENT WHERE STATUS = 1 AND ID = :id";
+		    $stmt = "DELETE FROM ES_CLIENT WHERE STATUS = 2 AND ID = :id";
 		    try{
 		        $this->dbc->beginTransaction();
 		        $rowsAffected = $this->dbc->execute($stmt, array("id" => $params["id"]));

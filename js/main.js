@@ -479,6 +479,8 @@ $(document).ready(function() {
 		
 		if (isValid){
 			
+			$("#submission-msg").html("");
+			
 			//Validation: Test eligibility rules
 			if ($("input[name='fldIsPortuguese'][value=1]:checked").val()){ //é português
 				$("#submission-msg").html("<img src=\"imgs/icon-congrats.png\"/ class=\"pull-left\" style=\"margin-right: 10px;\" width=\"64\" height=\"64\"/><p class=\"clearfix\">Parabéns!<BR>Você já possui nacionalidade portuguesa.</p><p class=\"pull-left\">Se pretende solicitar nacionalidade para outra pessoa de sua família, preencha o formulário com os dados dessa pessoa e obtenha mais informações.</p><p class=\"pull-left\">Se não encontrou a opção desejada por favor entre em contato conosco.</p>");
@@ -905,7 +907,7 @@ $(document).ready(function() {
 			$('input[name=BONDS]').val(r);
 					
 			// Send data for processing
-		    var url = window.location.href  +  "admin/es_controller.php";
+		    var url = window.location.origin  +  "/admin/es_controller.php";
 			var pack = {
 					"action" : "add",
 					"module" : "Prospect",
@@ -925,7 +927,9 @@ $(document).ready(function() {
 					$("#submission-msg").html("<img src=\"imgs/icon-congrats.png\"/ class=\"pull-left\" style=\"margin-right: 10px;\" width=\"64\" height=\"64\"/><p class=\"clearfix\">Seus dados já constam em nosso cadastro.<BR>Se quiser alterá-los ou incluir mais alguma informação importante podemos resolver isso juntos.</p><p class=\"pull-left\">Por favor, envie-nos um email com sua solicitação pelo \"Fale Conosco\" que nossa equipe entrará em contato.</p>");
 				}
 				else{
-					$("#submission-msg").html("<img src=\"imgs/icon-congrats.png\"/ class=\"pull-left\" style=\"margin-right: 10px;\" width=\"64\" height=\"64\"/><p class=\"clearfix\">Parabéns pela iniciativa!<BR>Você pode ser elegível conforme as leis de imigração portuguesas.</p><p class=\"pull-left\">Nossa equipe entrará em contato em breve para obter informações mais específicas que serão necessárias para os próximos passos.</p><p>Queremos comemorar grandes conquistas juntos!</p>");
+					if ($("#submission-msg").html().length == 0){
+						$("#submission-msg").html("<img src=\"imgs/icon-congrats.png\"/ class=\"pull-left\" style=\"margin-right: 10px;\" width=\"64\" height=\"64\"/><p class=\"clearfix\">Parabéns pela iniciativa!<BR>Você pode ser elegível conforme as leis de imigração portuguesas.</p><p class=\"pull-left\">Nossa equipe entrará em contato em breve para obter informações mais específicas que serão necessárias para os próximos passos.</p><p>Queremos comemorar grandes conquistas juntos!</p>");
+					}
 				}
 			})
 			.fail(function(data){	
@@ -936,9 +940,9 @@ $(document).ready(function() {
 			
 			
 		}
-		cleanUpFields("sign-up-form");	
 		$("#sign-up-modal").modal("toggle");
 		$("#submission-dialog").modal("show");
+		cleanUpFields("sign-up-form");	
 		$("*").removeClass("wait-cursor");	
 	});
 	
@@ -964,7 +968,7 @@ $(document).ready(function() {
 			cache: false
 		});
 		request.done(function(data){
-			console.log(data['message']);
+			//console.log(data['message']);
 		});
 		request.fail(function(data){
 			console.log(data["message"]);
