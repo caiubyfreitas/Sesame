@@ -218,6 +218,7 @@ Page header
 	text-transform: uppercase;
 	letter-spacing:1px;
 	padding-top: 40px;
+	
 }
 #page-header h2 {
 	font-size: 2.5em;
@@ -225,6 +226,12 @@ Page header
 	color: rgb(255,255,255);
 	padding-top: 30px;
 	padding-bottom: 30px;
+}
+#page-header .catchup{
+		color: #a6ffff;
+	
+		stroke: 1px;
+	
 }
 #page-header .lead{
 	font-size: 2em;
@@ -281,7 +288,7 @@ Page content (Serviços oferecidos)
 	background-color: rgb(19,48,90);
 	margin: 10px 0px 10px 0px;
 	padding: 5px 0px 5px 10px;
-	font-size: 0.9em;
+	font-size: 1.2em;
 	text-align: left;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;

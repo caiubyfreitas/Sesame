@@ -30,6 +30,19 @@ ul {
   padding: 0;
 }
 
+/*
+* ==========================================================
+*     PAGE
+* ==========================================================
+*/
+
+
+/*
+* ==========================================================
+*     PAGE CONTENT
+* ==========================================================
+*/
+
 section {
   padding: 20px 0;
 }
@@ -478,9 +491,6 @@ footer.main-footer p {
 	}
 }
 
-#grpProspects{
-	margin: 0px 10px 0px 20px;
-}
 
 body.busy-cursor {
   cursor: progress;
@@ -563,9 +573,6 @@ body.busy-cursor {
 #sidebar-profile a:hover{
 	text-decoration: underline;
 }
-
-
-
 
 .inline{
    display: inline; 

@@ -1,17 +1,17 @@
 /*
 * ****************************************************************************************************************************
 *
-* PROSPECTS VIEW IMPLEMENTATION
-* jan-2018
+* CLIENT VIEW IMPLEMENTATION
+* april-2018
 * By Caiuby Freitas
 *
-* Defines what happens when user clicks on prospects menu options and implements presentation features.
+* Defines what happens when user clicks on clients menu options and implements presentation features.
 * This is the VIEW counterpart of the MVC-based abstraction implemented herein.
 *
 * ****************************************************************************************************************************
 */
 
-var prospect = (function(){		
+var client = (function(){		
 	
 	var _ID;
 	
@@ -35,8 +35,8 @@ var prospect = (function(){
 	
 		Init: function(){			
 			var pageName = global.getPageName();
-			if (pageName[1] === "es_prospect"){ 
-				prospect.GetAll();
+			if (pageName[1] === "es_client"){ 
+				client.GetAll();
 			}
 
 		},
@@ -53,7 +53,7 @@ var prospect = (function(){
 		GetAll: function(page = 1){
 			controller.call(
 				"getAllRecords", 
-				"Prospect", 
+				"Client", 
 				page, 
 				this.ShowGridView, 
 				function(data){ 
@@ -66,7 +66,7 @@ var prospect = (function(){
 		GetRecord: function(id){
 			controller.call(
 				"findById",
-				"Prospect", 
+				"Client", 
 				id,
 				this.ShowRecordView,
 				function(data){
@@ -79,12 +79,12 @@ var prospect = (function(){
 		Delete: function(data, eventSource){
 			controller.call(
 				"remove",
-				"Prospect", 
+				"Client", 
 				{ 
 					"id" : data 
 				},
 				function(data){
-					prospect.ShowGridView($("#Prospect-View-Pagination li.active a").text());
+					client.ShowGridView($("#Client-View-Pagination li.active a").text());
 				},
 				function(data){
 					console.log(data)
@@ -92,24 +92,6 @@ var prospect = (function(){
 			); 
 		},
 		
-		Promote: function(data){
-			controller.call(
-				"changeStatus",
-				"Prospect",
-				{
-					"id" : data,
-					"status" : 2
-				},
-				function(data){
-					global.goToPage("es_prospect.php");
-				},
-				function(data){
-					console.log(data);
-				}
-			);
-		},
-	
-	
 		/*
 		* ------------------------------------------------------------------------------------------------------------------
 		* Presentation functions
@@ -120,58 +102,34 @@ var prospect = (function(){
 		// Shows grid view page
 		ShowGridView: function(data, currentPage = 1){
 						
-			$("#Prospect-Edit").hide();				
-			$("#lnkProspects").parent().addClass("active");
-			$("#Prospect-View-Records").hide();
-			$("#Prospect-View-DataTable").hide();
-			$("#Prospect-View-Pagination").hide();
-			$("#Prospect-View-DataTable tbody tr").remove();	
+			$("#Client-Edit").hide();				
+			$("#lnkClients").parent().addClass("active");
+			$("#Client-View-Records").hide();
+			$("#Client-View-DataTable").hide();
+			$("#Client-View-Pagination").hide();
+			$("#Client-View-DataTable tbody tr").remove();	
 
 			// Binds ON DELETE event to the handler
-			$("#Prospect-Delete-Confirmation").on("click", function(e){
-				$("#Prospect-Delete").modal("hide");
-				prospect.Delete($(this).data("id"), $(this).data("eventSource"));
+			$("#Client-Delete-Confirmation").on("click", function(e){
+				$("#Client-Delete").modal("hide");
+				client.Delete($(this).data("id"), $(this).data("eventSource"));
 			});					
 
 			// If empty
 			if (data.RECORDS === 0){
-				$("#Prospect-View-Message").html(data.MESSAGE);
-				$("#Prospect-View-Message").show();
+				$("#Client-View-Message").html(data.MESSAGE);
+				$("#Client-View-Message").show();
 			}
 			else {
-				$("#Prospect-View-Message").hide();
+				$("#Client-View-Message").hide();
 				
 				var str = "";
-				var table = $("#Prospect-View-DataTable tbody");
+				var table = $("#Client-View-DataTable tbody");
 				global.ShowWaitCursor(true);				
 				$.each(data.ROWS, function(idx, record){
-					
-					switch(parseInt(record.GOAL)){
-					case 1:
-						goal = "Profissional";
-						break;
-					case 2:
-						goal = "Estudante";
-						break;
-					case 3:
-						goal = "Empreendedor";
-						break;
-					case 4:
-						goal = "Aposentado";
-						break;
-					case 5:
-						goal = "Rendimentos Próprios";
-						break;
-					case 6:
-						goal = "Pessoa Notória";
-						break;
-					default:
-						goal = "Parente Português";
-					}
-					
+									
 					// Create HTML output for each record retrieved
 					str  = "<tr><td style=\"width:5%\">" + (++idx) + "</td>";
-					str += "<td style=\"width:10%\">" + goal + "</td>";
 					str += "<td>" + record.NAME + "</td>";
 					str += "<td>" + record.EMAIL + "</td>";
 					str += "<td style=\"width:10%\">" + record.LAST_UPDATE + "</td>";
@@ -183,16 +141,16 @@ var prospect = (function(){
 
 					// Binds ON_EDIT event handler dynamically
 					$("#lnkEdit"+idx).on("click", function(e){
-						prospect.SetID($(this).data("id"));
-						prospect.GetRecord({"id" : $(this).data("id")});
+						client.SetID($(this).data("id"));
+						client.GetRecord({"id" : $(this).data("id")});
 						e.preventDefault();
 					});						
 
 					// Binds ON_REMOVE event handler dynamically
 					$("#lnkRemove"+idx).on("click", function(e){
-						$("#Prospect-Delete-Confirmation").data("id", $(this).data("id"));
-						$("#Prospect-Delete-Confirmation").data("eventSource", idx);
-						$("#Prospect-Delete").modal("show");
+						$("#Client-Delete-Confirmation").data("id", $(this).data("id"));
+						$("#Client-Delete-Confirmation").data("eventSource", idx);
+						$("#Client-Delete").modal("show");
 						e.preventDefault();
 					});
 				});
@@ -204,28 +162,28 @@ var prospect = (function(){
 					var totalRecords = data.RECORDS;
 					var currentPage = data.CURRPAGE;
 
-					$("#Prospect-View-Pagination li").remove();
+					$("#Client-View-Pagination li").remove();
 					var str = "";
 					var pages = Math.ceil(totalRecords / maxPerPage);
 					for (i=1; i<=pages; i++){
 						str = "<li class=\"page-item" + ((i == currentPage)? " active" : "") + "\"><a id=\"lnkPage" + (i) + "\" class=\"page-link\" href=\"#\">" + (i) + "</a></li>"; 
-						$("#Prospect-View-Pagination ul").append(str);
+						$("#Client-View-Pagination ul").append(str);
 
 						// Binds ON CLICK event to the handler dynamically, so that the page number can be passed on to the controller
 						$("#lnkPage"+i).on("click", function(e){
-							prospect.GetAll($(e.target).text());
+							client.GetAll($(e.target).text());
 							e.preventDefault();
 						});
 					}
-					(pages > 1) ? $("#Prospect-View-Pagination").show() : $("#Prospect-View-Pagination").hide();
+					(pages > 1) ? $("#Client-View-Pagination").show() : $("#Client-View-Pagination").hide();
 
 
-					$("#Prospect-View-Records").html(data.RECORDS);
-					$("#Prospect-View-Records").show();
+					$("#Client-View-Records").html(data.RECORDS);
+					$("#Client-View-Records").show();
 				}
-				$("#Prospect-View-DataTable").show();
+				$("#Client-View-DataTable").show();
 			}
-			$("#Prospect-View").show();	
+			$("#Client-View").show();	
 			global.ShowWaitCursor(false);
 		},
 		
@@ -234,47 +192,47 @@ var prospect = (function(){
 			global.ShowWaitCursor(true);
 
 			// Fill up regular fields
-			$("#Prospect-Edit #fldName").val(data.ROWS[0].NAME);
-			$("#Prospect-Edit #fldEmail").val(data.ROWS[0].EMAIL);
-			$("#Prospect-Edit #fldtel1").val(data.ROWS[0].TEL1);
-			$("#Prospect-Edit #fldtel2").val(data.ROWS[0].TEL2);
-			$("#Prospect-Edit input[name=fldIsPortuguese][value=" + data.ROWS[0].ISPORTUGUESE + "]").prop("checked", true);
-			$("#Prospect-Edit #fldScholarship").val(data.ROWS[0].SCHOLARSHIP);
-			$("#Prospect-Edit #fldGraduation").val(data.ROWS[0].GRADUATION);
-			$("#Prospect-Edit #fldGradLocation").val(data.ROWS[0].GRADLOCATION);
-			$("#Prospect-Edit #fldCourse").val(data.ROWS[0].GRADCOURSE);
-			$("#Prospect-Edit input[name=fldENEM][value=" + data.ROWS[0].ENEM + "]").prop("checked", true);
-			$("#Prospect-Edit #fldComment1").val(data.ROWS[0].COMMENT1);
-			$("#Prospect-Edit #fldProfession").val(data.ROWS[0].PROFESSION);
-			$("#Prospect-Edit #fldLinkedin").val(data.ROWS[0].LINKEDINURL);
-			$("#Prospect-Edit #fldMarketSeg").val(data.ROWS[0].INVSEGMENT);
-			$("#Prospect-Edit input[name=fldPrevVisit][value=" + data.ROWS[0].PREVISIT + "]").prop("checked", true);
-			$("#Prospect-Edit #fldLocationToInv").val(data.ROWS[0].INVTLOCATION);
-			$("#Prospect-Edit #fldInvest").val(data.ROWS[0].INVBUDGET);
-			$("#Prospect-Edit #fldRetdStatus").val(data.ROWS[0].RETDSTATUS);
-			$("#Prospect-Edit #fldRetWage").val(data.ROWS[0].RETWAGE);
-			$("#Prospect-Edit #fldLocationToRet").val(data.ROWS[0].RETDLOCATION);
-			$("#Prospect-Edit #fldRetAlone").val(data.ROWS[0].RETDALONE);
-			$("#Prospect-Edit input[name=fldIsSponsor][value=" + data.ROWS[0].RETMINORSPON + "]").prop("checked", true);
-			$("#Prospect-Edit #fldComment2").val(data.ROWS[0].COMMENT2);
-			$("#Prospect-Edit #fldComment3").val(data.ROWS[0].COMMENT3);
-			$("#Prospect-Edit #fldComment4").val(data.ROWS[0].COMMENT4);
-			$("#Prospect-Edit #fldComment5").val(data.ROWS[0].COMMENT5);
+			$("#Client-Edit #fldName").val(data.ROWS[0].NAME);
+			$("#Client-Edit #fldEmail").val(data.ROWS[0].EMAIL);
+			$("#Client-Edit #fldtel1").val(data.ROWS[0].TEL1);
+			$("#Client-Edit #fldtel2").val(data.ROWS[0].TEL2);
+			$("#Client-Edit input[name=fldIsPortuguese][value=" + data.ROWS[0].ISPORTUGUESE + "]").prop("checked", true);
+			$("#Client-Edit #fldScholarship").val(data.ROWS[0].SCHOLARSHIP);
+			$("#Client-Edit #fldGraduation").val(data.ROWS[0].GRADUATION);
+			$("#Client-Edit #fldGradLocation").val(data.ROWS[0].GRADLOCATION);
+			$("#Client-Edit #fldCourse").val(data.ROWS[0].GRADCOURSE);
+			$("#Client-Edit input[name=fldENEM][value=" + data.ROWS[0].ENEM + "]").prop("checked", true);
+			$("#Client-Edit #fldComment1").val(data.ROWS[0].COMMENT1);
+			$("#Client-Edit #fldProfession").val(data.ROWS[0].PROFESSION);
+			$("#Client-Edit #fldLinkedin").val(data.ROWS[0].LINKEDINURL);
+			$("#Client-Edit #fldMarketSeg").val(data.ROWS[0].INVSEGMENT);
+			$("#Client-Edit input[name=fldPrevVisit][value=" + data.ROWS[0].PREVISIT + "]").prop("checked", true);
+			$("#Client-Edit #fldLocationToInv").val(data.ROWS[0].INVTLOCATION);
+			$("#Client-Edit #fldInvest").val(data.ROWS[0].INVBUDGET);
+			$("#Client-Edit #fldRetdStatus").val(data.ROWS[0].RETDSTATUS);
+			$("#Client-Edit #fldRetWage").val(data.ROWS[0].RETWAGE);
+			$("#Client-Edit #fldLocationToRet").val(data.ROWS[0].RETDLOCATION);
+			$("#Client-Edit #fldRetAlone").val(data.ROWS[0].RETDALONE);
+			$("#Client-Edit input[name=fldIsSponsor][value=" + data.ROWS[0].RETMINORSPON + "]").prop("checked", true);
+			$("#Client-Edit #fldComment2").val(data.ROWS[0].COMMENT2);
+			$("#Client-Edit #fldComment3").val(data.ROWS[0].COMMENT3);
+			$("#Client-Edit #fldComment4").val(data.ROWS[0].COMMENT4);
+			$("#Client-Edit #fldComment5").val(data.ROWS[0].COMMENT5);
 			
 			// Checkbox group
 			var bitValue = data.ROWS[0].BONDS;
 			var totalItems = ($("input[name=fldBonds]").length * bitValue.length - 7); 
 			for (i = 1; i < totalItems; i*=2){
 				if (global.BitWiseTest(bitValue, i) > 0){
-					$("#Prospect-Edit input[name=fldBonds][value=" + i + "]").prop("checked", true);
+					$("#Client-Edit input[name=fldBonds][value=" + i + "]").prop("checked", true);
 				}
 			}			
 		
 			// Show & Hide
-			$("#Prospect-View").hide();				
-			$("#Prospect-Edit-DataView").show();
-			$("#Prospect-Edit-Commands").show();
-			$("#Prospect-Edit").show();
+			$("#Client-View").hide();				
+			$("#Client-Edit-DataView").show();
+			$("#Client-Edit-Commands").show();
+			$("#Client-Edit").show();
 			global.ShowWaitCursor(false);
 		}
 
@@ -290,20 +248,11 @@ var prospect = (function(){
 
 $(document).ready(function(){
 	
-	prospect.Init();
+	client.Init();
 
-	$("#Prospect-cmdClose").on("click", function(e){
-		global.goToPage("es_prospect.php");
+	$("#Client-cmdClose").on("click", function(e){
+		global.goToPage("es_client.php");
 		e.preventDefault();		
 	});
 	
-	$("#Prospect-cmdPromote").on("click", function(e){
-		$("#Prospect-Promote").modal("show");		
-		$("#Prospect-Promote-Confirmation").data("id", prospect.GetID());
-		e.preventDefault();
-	});
-
-	$("#Prospect-Promote-Confirmation").on("click", function(e){
-		prospect.Promote($(this).data("id"));	
-	});
 });

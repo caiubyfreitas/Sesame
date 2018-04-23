@@ -57,7 +57,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>Ao confirmar esta operação todos os dados associados a este prospecto todos os dados relacionados serão apagados definitivamente. <b>Esta operação não poderá ser desfeita</b>.</p>
+					<p>Ao confirmar esta operação todos os dados associados a este prospecto serão apagados definitivamente. <b>Esta operação não poderá ser desfeita</b>.</p>
 				</div>
 				<div class="modal-footer">
 					<button id="Prospect-Delete-Confirmation" type="button" class="btn btn-primary" data-id="" data-eventSource="">Sim, continue</button>
@@ -509,8 +509,6 @@
 			</div>
 		</div>										
 	</div>
-
-
 
 </section>
 					

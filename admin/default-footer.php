@@ -3,7 +3,7 @@
 						<div class="modal-dialog" role="alert">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title">NotificaÃ§Ã£o</h5>
+									<h5 class="modal-title">Notificação</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -17,7 +17,7 @@
 							</div>
 						</div>
 					</section>
-				
+					
 				</div>
 				
 				<!-- Page Footer-->
@@ -56,10 +56,11 @@
     <!-- Views -->
     <script src="view/es_admin.js"></script>
     <script src="view/es_prospect.js"></script>
+    <script src="view/es_client.js"></script>
 
     <!-- Dashboard specifics -->
     <script src="js/es_dashboard.js"></script>
 	
 </body>
 
-</html>
+</html>				

@@ -24,9 +24,13 @@
 			$controller = new AdminController();
 			break;
 		case "Prospect":
-			require_once("controller/es_ctrl_prospect.php");
-			$controller = new ProspectController();
-			break;
+		    require_once("controller/es_ctrl_prospect.php");
+		    $controller = new ProspectController();
+		    break;
+		case "Client":
+		    require_once("controller/es_ctrl_client.php");
+		    $controller = new ClientController();
+		    break;
 	}
 	
 	// Call on-demand instantiated controller
